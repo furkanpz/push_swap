@@ -31,7 +31,7 @@ void	ft_pb(t_stack *stack);
 void	ft_pa(t_stack *stack);
 int		ft_sort(t_stack *stack, int size);
 int		ft_push(t_stack *stack, int len, char aorb);
-int		ft_get_mid(int *pivot, int *stack, int size);
+int		ft_get_mid(int *midvalue, int *stack, int size);
 int		ft_checks(int *pile, int size, int order);
 void	ft_sort3(t_stack *s);
 void	ft_sort_tmp(int *tmp_stack, int size);

@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:29:50 by fuyar             #+#    #+#             */
-/*   Updated: 2023/11/17 14:54:31 by fuyar            ###   ########.fr       */
+/*   Updated: 2023/11/17 16:47:41 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_sortsb(t_stack *s, int len)
 	return (0);
 }
 
-int	ft_get_mid(int *pivot, int *stack, int size)
+int	ft_get_mid(int *midvalue, int *stack, int size)
 {
 	int		*tmps;
 	int		i;
@@ -81,14 +81,14 @@ int	ft_get_mid(int *pivot, int *stack, int size)
 		i++;
 	}
 	ft_sort_tmp(tmps, size);
-	*pivot = tmps[size / 2];
+	*midvalue = tmps[size / 2];
 	free(tmps);
 	return (1);
 }
 
 int	ft_qsa(t_stack *stack, int len, int cs)
 {
-	int	pivot;
+	int	midvalue;
 	int	size;
 
 	if (ft_checks(stack->a, len, 0) == 1)
@@ -99,11 +99,11 @@ int	ft_qsa(t_stack *stack, int len, int cs)
 		ft_qs3(stack, len);
 		return (1);
 	}
-	if (!cs && !ft_get_mid(&pivot, stack->a, len))
+	if (!cs && !ft_get_mid(&midvalue, stack->a, len))
 		return (0);
 	while (len != size / 2 + size % 2)
 	{
-		if (stack->a[0] < pivot && (len--))
+		if (stack->a[0] < midvalue && (len--))
 			ft_pb(stack);
 		else if (++cs)
 			ft_ra(stack);
@@ -117,7 +117,7 @@ int	ft_qsa(t_stack *stack, int len, int cs)
 
 int	ft_qsb(t_stack *stack, int len, int cs)
 {
-	int	pivot;
+	int	midvalue;
 	int	size;
 
 	if (!cs && ft_checks(stack->b, len, 1) == 1)
@@ -129,11 +129,11 @@ int	ft_qsb(t_stack *stack, int len, int cs)
 		return (1);
 	}
 	size = len;
-	if (!ft_get_mid(&pivot, stack->b, len))
+	if (!ft_get_mid(&midvalue, stack->b, len))
 		return (0);
 	while (len != size / 2)
 	{
-		if (stack->b[0] >= pivot && len--)
+		if (stack->b[0] >= midvalue && len--)
 			ft_pa(stack);
 		else if (++cs)
 			ft_rb(stack);
